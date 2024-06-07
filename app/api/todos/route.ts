@@ -15,7 +15,7 @@ const connectDatabase = async () => {
 export async function GET() {
   try {
     await connectDatabase();
-    const todos = await Todo.find();
+    const todos = await Todo.find().sort({ createdAt: -1 });
     return NextResponse.json(todos, { status: 200 });
   } catch (error) {
     console.error(error);

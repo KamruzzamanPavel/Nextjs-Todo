@@ -1,19 +1,22 @@
-// components/AddTodo.tsx
+ 
 "use client";
 
 import { useState } from "react";
 import axios from "axios";
 
+interface Todo {
+  _id: string;
+  title: string;
+  completed: boolean;
+  createdAt: string;
+}
+
 interface AddTodoProps {
-  onTodoAdded: (todo: {
-    _id: string;
-    title: string;
-    completed: boolean;
-  }) => void;
+  onTodoAdded: (newTodo: Todo) => void;
   setError: (error: string | null) => void;
 }
 
-const AddTodo = ({ onTodoAdded, setError }: AddTodoProps) => {
+const AddTodo: React.FC<AddTodoProps> = ({ onTodoAdded, setError }) => {
   const [newTodo, setNewTodo] = useState("");
 
   const addTodo = async () => {
